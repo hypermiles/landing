@@ -1346,3 +1346,70 @@ footer {
 #package-name-display {
     font-weight: 600;
 } 
+
+
+/* Booking Form Styles - Compact */
+#bookingForm {
+  max-width: 500px;
+  margin: 30px auto 0 auto;
+  padding: 16px 16px 15px 16px; /* reduced padding */
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* reduced gap */
+}
+
+#bookingForm input[type="text"],
+#bookingForm input[type="email"],
+#bookingForm input[type="tel"],
+#bookingForm input[type="date"] {
+  width: 100%;
+  padding: 8px 10px; /* reduced padding */
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-top: 5px; /* reduced margin */
+  box-sizing: border-box;
+}
+
+#bookingForm label {
+  font-size: 0.7rem;
+  color: #100303;
+  margin-bottom: 10px; /* reduced margin */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#bookingForm button[type="submit"] {
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 0; /* reduced padding */
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px; /* reduced margin */
+  transition: background 0.2s;
+}
+
+#bookingForm button[type="submit"]:hover {
+  background: #e96a00;
+}
+
+@media (max-width: 600px) {
+  #bookingForm {
+    padding: 10px 4px;
+  }
+}
+
+#thank-you {
+  max-width: 500px;
+  margin: 12px auto 0 auto;
+  text-align: center;
+  color: green;
+  font-weight: 600;
+}
