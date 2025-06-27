@@ -29,6 +29,108 @@
         </div>
     </header>
 
+  <!-- Popup Overlay -->
+  <div id="popup-overlay">
+    <div class="popup-wrapper">
+      <div class="close-btn" onclick="closePopup()">×</div>
+
+      <div id="popup-form">
+        <h3>Travel Booking Inquiry</h3>
+
+        <form id="bookingForm"
+              action="https://sandbox-crm.hypermiles.com/landingpageenquiry.sys"
+              method="POST"
+              target="hiddenSubmit"
+              onsubmit="handleSubmit(event)">
+
+          <div class="form-row">
+            <input type="text" placeholder="Full Name" name="name" required />
+            <input type="email" placeholder="Email" name="email" />
+          </div>
+
+          <div class="form-row">
+            <input type="tel" placeholder="Phone" name="phone" required />
+            <select name="serviceType" required>
+              <option value="">Select Service Type</option>
+              <option value="Holidays Package">Holidays Package</option>
+              <option value="Hotel">Hotel</option>
+              <option value="Visa">Visa</option>
+              <option value="Transfer">Transfer</option>
+              <option value="Extra or Activity">Extra or Activity</option>
+              <option value="Flight">Flight</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Consultation">Consultation</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <input type="text" placeholder="Origin" name="origin" required />
+            <input type="text" placeholder="Destination" name="destination" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-column">
+              <label for="checkin">Check-in</label>
+              <input type="date" id="checkin" name="checkin" required />
+            </div>
+            <div class="form-column">
+              <label for="checkout">Check-out</label>
+              <input type="date" id="checkout" name="checkout" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <input type="number" placeholder="Total Pax" min="1" name="totalpax" />
+            <input type="number" placeholder="Children" min="0" name="childs" />
+          </div>
+
+          <div class="form-row">
+            <input type="number" placeholder="Infants" min="0" name="infants" />
+          </div>
+
+          <input type="hidden" name="leadSource" value="website" />
+          <button type="submit">Submit</button>
+        </form>
+
+        <div id="thank-you">✅ Thank you! Your inquiry has been submitted.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden iframe -->
+  <iframe name="hiddenSubmit"></iframe>
+
+  <script>
+    function openPopup() {
+      document.getElementById('popup-overlay').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    function handleSubmit(e) {
+      const form = document.getElementById('bookingForm');
+
+      setTimeout(() => {
+        document.getElementById('thank-you').style.display = 'block';
+        form.reset();
+
+        setTimeout(() => {
+          document.getElementById('thank-you').style.display = 'none';
+          closePopup();
+        }, 3000);
+      }, 500);
+    }
+
+    // Auto-open popup after 5 seconds
+    window.addEventListener("load", () => {
+      setTimeout(openPopup, 5000);
+    });
+  </script>
+
+
+
     <section id="hero" class="hero">
         <div class="hero-background"></div>
         <div class="container">
@@ -56,6 +158,9 @@
             </div>
         </div>
     </section>
+
+
+    
 
     <section id="features" class="features">
         <div class="container">
@@ -545,7 +650,7 @@
   <h3>Travel Booking Form</h3>
 
   <!-- Thank You Message -->
-  <div id="thank-you" style="display:none; color:green; font-weight:600; margin:16px 0;">
+  <div id="thank-you" style="display:none; color:green; font-weight:600; margin:16px 0; text-align:center;">
     ✅ Thank you! Your booking inquiry has been submitted. Our team will get back to you shortly.
   </div>
 
@@ -561,12 +666,15 @@
     <input type="email" name="email" placeholder="Email" required />
     <input type="tel" name="phone" placeholder="Phone Number" required />
     <input type="text" name="destination" placeholder="Destination" required />
+    
     <label>Check-in:
       <input type="date" name="checkin" required />
     </label>
+    
     <label>Check-out:
       <input type="date" name="checkout" required />
     </label>
+    
     <input type="text" name="totalpax" placeholder="Total Pax" required />
     <button type="submit">Submit</button>
   </form>
@@ -574,20 +682,21 @@
   <!-- Script to show Thank You message after iframe loads -->
   <script>
     function showThankYou() {
-      // You can enhance this check if needed
-      document.getElementById('thank-you').style.display = 'block';
-    }
+      const thankYou = document.getElementById('thank-you');
+      const form = document.getElementById('bookingForm');
 
-          // Reset the form
-      document.getElementById('bookingForm').reset();
+      thankYou.style.display = 'block';  // Show the thank-you message
+      form.reset();                      // Reset the form fields
 
-      // Hide message after 5 seconds
       setTimeout(() => {
-        thankYou.style.display = 'none';
+        thankYou.style.display = 'none'; // Hide message after 5 seconds
       }, 5000);
-    
+    }
   </script>
 </section>
+
+
+
 
 
 <!-- ...existing code below... -->
